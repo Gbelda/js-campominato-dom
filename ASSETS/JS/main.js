@@ -52,18 +52,19 @@ for (let i = 1; i <= maxValue; i++) {
 
         }
     }
-    //l'utente clicca su ogni cella:
+    if (bombs.includes(parseInt(divEl.innerHTML))) {
+        divEl.classList.add("bomb")
+    }
     divEl.addEventListener('click', function () {
-
         /* se il numero è presente nella lista dei numeri generati
         la cella si colora di rosso e la partita termina*/
         if (bombs.includes(parseInt(divEl.innerHTML))) {
             let point = safe.length
             alert(`GAME OVER hai fatto ${point} punti`)
+            let bombEl = document.getElementsByClassName("bomb")
+            for (let i = 0; i < bombEl.length; i++) {
+                bombEl[i].classList.add("red")
 
-            for (let index = 0; index < maxValue; index++) {
-                bombs.includes(parseInt(divEl.innerHTML))
-                divEl.classList.add("red")
             }
 
 
