@@ -35,6 +35,7 @@ if (userDifficulty == 1) {
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
 let bombs = []
 let safe = []
 let bombEl = document.getElementsByClassName("bomb")
@@ -47,7 +48,6 @@ for (let i = 1; i <= maxValue; i++) {
 
     if (bombs.includes(parseInt(divEl.innerHTML))) {
         divEl.classList.add("bomb")
-        divEl.removeEventListener('click', addClassClick)
     }
 
     //I numeri nella lista delle bombe non possono essere duplicati.
@@ -59,30 +59,34 @@ for (let i = 1; i <= maxValue; i++) {
         }
     }
     divEl.addEventListener('click', addClassClick)
+
     /* se il numero è presente nella lista dei numeri generati
     la cella si colora di rosso e la partita termina*/
 
+}
+for (let i = 0; i < bombEl.length; i++) {
+    bombEl[i].removeEventListener('click', addClassClick)
+}
+function addClassClick() {
+    if (bombs.includes(parseInt(this.innerHTML))) {
+        for (let i = 0; i < bombEl.length; i++) {
+            bombEl[i].classList.add("red")
+        }
+        let point = safe.length
+        alert(`GAME OVER hai fatto ${point} punti`)
 
-    function addClassClick() {
-        if (bombs.includes(parseInt(divEl.innerHTML))) {
-            let point = safe.length
-            alert(`GAME OVER hai fatto ${point} punti`)
-            for (let i = 0; i < bombEl.length; i++) {
-                bombEl[i].classList.add("red")
-            }
-
-            /* altrimenti la cella cliccata si colora di azzurro e 
-            l'utente può continuare a cliccare sulle altre celle */
-        } else {
-            safe.push(this.innerHTML)
-            this.classList.add("blue")
-            if (safe.length == (maxValue - 16)) {
-                alert("Hai vinto")
-            }
+        /* altrimenti la cella cliccata si colora di azzurro e 
+        l'utente può continuare a cliccare sulle altre celle */
+    } else {
+        safe.push(this.innerHTML)
+        this.classList.add("blue")
+        if (safe.length == (maxValue - 16)) {
+            alert("Hai vinto")
         }
     }
-}
 
+
+}
 
 
 
