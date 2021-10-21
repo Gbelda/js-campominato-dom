@@ -42,3 +42,10 @@ body{
 .red{
     background-color: red;
 }
+
+h1{
+    text-align: center;
+
+    margin-bottom: -6rem;
+    color: red;
+}

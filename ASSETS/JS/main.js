@@ -58,14 +58,12 @@ for (let i = 1; i <= maxValue; i++) {
 
         }
     }
+    divEl.removeEventListener('click', addClassClick)
     divEl.addEventListener('click', addClassClick)
 
     /* se il numero è presente nella lista dei numeri generati
     la cella si colora di rosso e la partita termina*/
 
-}
-for (let i = 0; i < bombEl.length; i++) {
-    bombEl[i].removeEventListener('click', addClassClick)
 }
 function addClassClick() {
     if (bombs.includes(parseInt(this.innerHTML))) {
@@ -73,7 +71,8 @@ function addClassClick() {
             bombEl[i].classList.add("red")
         }
         let point = safe.length
-        alert(`GAME OVER hai fatto ${point} punti`)
+        document.querySelector('h1').innerHTML = `GAME OVER hai fatto ${point} punti`
+
 
         /* altrimenti la cella cliccata si colora di azzurro e 
         l'utente può continuare a cliccare sulle altre celle */
@@ -81,7 +80,7 @@ function addClassClick() {
         safe.push(this.innerHTML)
         this.classList.add("blue")
         if (safe.length == (maxValue - 16)) {
-            alert("Hai vinto")
+            document.querySelector('h1').innerHTML = `CONGRATULAZIONI HAI VINTO`
         }
     }
 
