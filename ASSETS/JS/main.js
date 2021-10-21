@@ -33,6 +33,7 @@ if (userDifficulty == 1) {
 for (let i = 1; i <= maxValue; i++) {
     const divEl = document.createElement('div')
     divEl.className = "cell"
+    divEl.className += ` cell_${maxValue}`
     divEl.append(i)
     container.append(divEl)
 
@@ -44,11 +45,21 @@ for (let i = 1; i <= maxValue; i++) {
 
     })
 
-
-
-
 }
 
 
+//Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
 
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
+//I numeri nella lista delle bombe non possono essere duplicati.
+let bombs = []
+while (bombs.length < 16) {
+    let bomb = getRandomNumber(1, maxValue)
+    if (!bombs.includes(bomb)) {
+        bombs.push(bomb)
+    }
+}
+console.log(bombs);

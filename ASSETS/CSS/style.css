@@ -10,20 +10,31 @@ body{
 
 .container{
     margin: auto;
-    width: 800px;
+    width: 900px;
     display: flex;
     flex-wrap: wrap;
 
 }
 
 .cell{
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    line-height: 100px;
+    display: flex;
     border: 2px solid white;
+    justify-content: center;
+    align-items: center;
 }
 
+.cell_100{
+    width: calc(100% / 10);
+    height: 90px;
+}
+.cell_81{
+    width: calc(100% / 9);
+    height: 100px;
+}
+.cell_49{
+    width: calc(100% / 7);
+    height: 128.56px;
+}
 .blue{
     background-color: skyblue;
 }
