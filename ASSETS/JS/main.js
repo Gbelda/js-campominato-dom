@@ -30,6 +30,7 @@ if (userDifficulty == 1) {
 //difficoltà 2 => tra 1 e 81
 // difficoltà 3 => tra 1 e 49
 
+let bombs = []
 for (let i = 1; i <= maxValue; i++) {
     const divEl = document.createElement('div')
     divEl.className = "cell"
@@ -37,17 +38,28 @@ for (let i = 1; i <= maxValue; i++) {
     divEl.append(i)
     container.append(divEl)
 
-    //Assegnare un event listener a una cella
-    divEl.addEventListener("click", function () {
-        //Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
-        divEl.classList.add("blue")
+    while (bombs.length < 16) {
+        let bomb = getRandomNumber(1, maxValue)
+        if (!bombs.includes(bomb)) {
+            bombs.push(bomb)
+        }
+    }
 
+    divEl.addEventListener('click', function () {
+        if (bombs.includes(parseInt(divEl.innerHTML))) {
+            this.classList.add("red")
+            console.log();
+        } else {
+            this.classList.add("blue")
 
+        }
     })
-
 }
 
 
+
+
+// })
 //Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
 
 function getRandomNumber(min, max) {
@@ -55,11 +67,4 @@ function getRandomNumber(min, max) {
 }
 
 //I numeri nella lista delle bombe non possono essere duplicati.
-let bombs = []
-while (bombs.length < 16) {
-    let bomb = getRandomNumber(1, maxValue)
-    if (!bombs.includes(bomb)) {
-        bombs.push(bomb)
-    }
-}
-console.log(bombs);
+
