@@ -37,12 +37,18 @@ function getRandomNumber(min, max) {
 }
 let bombs = []
 let safe = []
+let bombEl = document.getElementsByClassName("bomb")
 for (let i = 1; i <= maxValue; i++) {
     const divEl = document.createElement('div')
     divEl.className = "cell"
     divEl.className += ` cell_${maxValue}`
     divEl.append(i)
     container.append(divEl)
+
+    if (bombs.includes(parseInt(divEl.innerHTML))) {
+        divEl.classList.add("bomb")
+        divEl.removeEventListener('click', addClassClick)
+    }
 
     //I numeri nella lista delle bombe non possono essere duplicati.
     while (bombs.length < 16) {
@@ -52,33 +58,30 @@ for (let i = 1; i <= maxValue; i++) {
 
         }
     }
-    if (bombs.includes(parseInt(divEl.innerHTML))) {
-        divEl.classList.add("bomb")
-    }
-    divEl.addEventListener('click', function () {
-        /* se il numero è presente nella lista dei numeri generati
-        la cella si colora di rosso e la partita termina*/
+    divEl.addEventListener('click', addClassClick)
+    /* se il numero è presente nella lista dei numeri generati
+    la cella si colora di rosso e la partita termina*/
+
+
+    function addClassClick() {
         if (bombs.includes(parseInt(divEl.innerHTML))) {
             let point = safe.length
             alert(`GAME OVER hai fatto ${point} punti`)
-            let bombEl = document.getElementsByClassName("bomb")
             for (let i = 0; i < bombEl.length; i++) {
                 bombEl[i].classList.add("red")
-
             }
-
 
             /* altrimenti la cella cliccata si colora di azzurro e 
             l'utente può continuare a cliccare sulle altre celle */
         } else {
-            this.classList.add("blue")
             safe.push(this.innerHTML)
+            this.classList.add("blue")
+            if (safe.length == (maxValue - 16)) {
+                alert("Hai vinto")
+            }
         }
-        console.log(safe);
-    })
-
+    }
 }
-
 
 
 

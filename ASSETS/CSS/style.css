@@ -10,10 +10,10 @@ body{
 
 .container{
     margin: auto;
-    width: 900px;
+    width: 700px;
     display: flex;
     flex-wrap: wrap;
-
+    padding-top: 7rem;
 }
 
 .cell{
@@ -25,15 +25,15 @@ body{
 
 .cell_100{
     width: calc(100% / 10);
-    height: 90px;
+    height: 70px;
 }
 .cell_81{
     width: calc(100% / 9);
-    height: 100px;
+    height: 77.77px;
 }
 .cell_49{
     width: calc(100% / 7);
-    height: 128.56px;
+    height: 100px;
 }
 .blue{
     background-color: skyblue;
