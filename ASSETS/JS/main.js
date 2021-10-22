@@ -61,7 +61,6 @@ for (let i = 1; i <= maxValue; i++) {
 }
 function addClassClick() {
     if (bombs.includes(parseInt(this.innerHTML))) {
-        console.log(this);
         for (let i = 0; i < bombEl.length; i++) {
             bombEl[i].classList.add("red")
         }
