@@ -1,8 +1,3 @@
-
-
-
-
-
 //STRUMENTI
 const container = document.querySelector(".container")
 
@@ -58,22 +53,22 @@ for (let i = 1; i <= maxValue; i++) {
 
         }
     }
-    divEl.removeEventListener('click', addClassClick)
-    divEl.addEventListener('click', addClassClick)
-
     /* se il numero è presente nella lista dei numeri generati
     la cella si colora di rosso e la partita termina*/
+    divEl.addEventListener('click', addClassClick)
+
 
 }
 function addClassClick() {
     if (bombs.includes(parseInt(this.innerHTML))) {
+        console.log(this);
         for (let i = 0; i < bombEl.length; i++) {
             bombEl[i].classList.add("red")
         }
         let point = safe.length
         document.querySelector('h1').innerHTML = `GAME OVER hai fatto ${point} punti`
 
-
+        removeEvent()
         /* altrimenti la cella cliccata si colora di azzurro e 
         l'utente può continuare a cliccare sulle altre celle */
     } else {
@@ -88,5 +83,12 @@ function addClassClick() {
 }
 
 
+function removeEvent() {
+    const cellEl = document.getElementsByClassName("cell")
+    for (let i = 0; i < cellEl.length; i++) {
+        const singleCell = cellEl[i]
+        singleCell.removeEventListener('click', addClassClick)
 
+    }
+}
 
